@@ -13,6 +13,8 @@ namespace RestApiCRUD.EmployeeData
         {
             _employeeContext = employeeContext;
         }
+
+        //DB에서 직원 정보 추가
         public Employee AddEmployee(Employee employee)
         {
             employee.Id = Guid.NewGuid();                   // 새로운 Guid를 생성하여 Id에 저장
@@ -21,6 +23,7 @@ namespace RestApiCRUD.EmployeeData
             return employee;
         }
 
+        //DB에서 직원정보 삭제
         public void DeleteEmployee(Employee employee)
         {
              _employeeContext.Employees.Remove(employee);   //해당 직원정보를 DB에서 제거
@@ -29,6 +32,7 @@ namespace RestApiCRUD.EmployeeData
 
         }
 
+        //DB에서 직원정보 수정
         public Employee EditEmployee(Employee employee)
         {
             var existEmployee = _employeeContext.Employees.Find(employee.Id);   // DB에서 해당 Id를 가진 직원정보를 DB에서 찾는다.
@@ -44,12 +48,14 @@ namespace RestApiCRUD.EmployeeData
             return employee;
         }
 
+        //DB에서 직원 상세정보 조회
         public Employee GetEmployee(Guid id)
         {
             var employee = _employeeContext.Employees.Find(id);             // 해당 Guid를 가진 직원정보를 DB에서 찾아서 가져온다.
             return employee;
         }
 
+        //DB에서 직원 리스트 가져오기
         public List<Employee> GetEmployees()
         {
             return _employeeContext.Employees.ToList();                 // 모든 직원정보 리스트를 DB에서 가져온다.
